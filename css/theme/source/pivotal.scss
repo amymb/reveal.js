@@ -1,0 +1,67 @@
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+// ---------------------------------------------
+
+// Override theme settings ---------------------
+//$heading1TextShadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5
+//px 10px rgba(0,0,0,.25), 0 20px 20px rgba(0,0,0,.15);
+
+$PivotalTeal: #01786E;
+$PivotalLinkBlue: #0093C9;
+$PivotalCalloutOrange: #F06523;
+$PivotalCoolGray: #75787B;
+$PivotalDarkGray: #243640;
+$PivotalBackgroundLightGray: #F1F1F1;
+$PivotalBackgroundWhite: #FFFFFF;
+$PivotalBackgroundBlack: #0A0203;
+
+$backgroundColor: $PivotalBackgroundLightGray;
+
+$mainColor: $PivotalDarkGray;
+$headingColor: $PivotalDarkGray;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: $PivotalLinkBlue;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: $PivotalBackgroundWhite;
+	}
+}
+
+.reveal .copyright{
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.3em;
+  color: $PivotalCoolGray;
+}
+
+.reveal .logo{
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 0.7em;
+  color: $PivotalTeal;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
