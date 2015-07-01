@@ -18,38 +18,36 @@ $PivotalDarkGray: #243640;
 $PivotalBackgroundLightGray: #F1F1F1;
 $PivotalBackgroundWhite: #FFFFFF;
 $PivotalBackgroundBlack: #0A0203;
+$backgroundColor: $PivotalBackgroundBlack;
+$PivotalFont: 'Source Sans Pro';
 
-$backgroundColor: $PivotalBackgroundLightGray;
+$mainColor: white;
+$headingColor: $PivotalBackgroundLightGray;
 
-$mainColor: $PivotalDarkGray;
-$headingColor: $PivotalDarkGray;
-
-$mainFontSize: 38px;
-$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
-$headingTextShadow: none;
+$mainFontSize: 24px;
+$mainFont: Helvetica, sans-serif;
+$headingFont: $PivotalFont, Helvetica, sans-serif;
+//$headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: none;
+//$headingTextTransform: none;
 $headingFontWeight: 600;
-$linkColor: $PivotalLinkBlue;
+$linkColor: $PivotalCoolGray;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
 $heading1Size: 2.5em;
-$heading2Size: 1.6em;
+$heading2Size: 1.8em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
 
-section.has-light-background {
-	&, h1, h2, h3, h4, h5, h6 {
-		color: $PivotalBackgroundWhite;
-	}
-}
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
 
 .reveal .copyright{
   position: absolute;
   bottom: 8px;
-  right: 8px;
+  left: 8px;
   font-size: 0.3em;
   color: $PivotalCoolGray;
 }
@@ -57,11 +55,21 @@ section.has-light-background {
 .reveal .logo{
   position: absolute;
   bottom: 8px;
-  left: 8px;
-  font-size: 0.7em;
+  right: 10px;
+  font-size: 0.4em;
   color: $PivotalTeal;
+  font: $PivotalFont;
 }
 
-// Theme template ------------------------------
-@import "../template/theme";
-// ---------------------------------------------
+.reveal p {
+  margin: 20px 0;
+  line-height: 1;
+//  text-align: left;
+}
+
+.reveal section img {
+  margin: 15px 0px;
+  background: none;
+  border:none;
+  box-shadow:none;
+}
