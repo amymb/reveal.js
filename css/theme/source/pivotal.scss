@@ -18,20 +18,20 @@ $PivotalDarkGray: #243640;
 $PivotalBackgroundLightGray: #F1F1F1;
 $PivotalBackgroundWhite: #FFFFFF;
 $PivotalBackgroundBlack: #0A0203;
-$backgroundColor: $PivotalBackgroundBlack;
+$backgroundColor: $PivotalBackgroundWhite;
 $PivotalFont: 'Source Sans Pro';
 
-$mainColor: white;
-$headingColor: $PivotalBackgroundLightGray;
+$mainColor: $PivotalDarkGray;
+$headingColor: $PivotalCoolGray;
 
 $mainFontSize: 24px;
 $mainFont: Helvetica, sans-serif;
 $headingFont: $PivotalFont, Helvetica, sans-serif;
 //$headingTextShadow: none;
 $headingLetterSpacing: normal;
-//$headingTextTransform: none;
+$headingTextTransform: lowercase;
 $headingFontWeight: 600;
-$linkColor: $PivotalCoolGray;
+$linkColor: $PivotalLinkBlue;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
@@ -48,17 +48,19 @@ $heading4Size: 1.0em;
   position: absolute;
   bottom: 8px;
   left: 8px;
-  font-size: 0.3em;
+  font-size: 0.4em;
   color: $PivotalCoolGray;
+  z-index: 1000;
 }
 
 .reveal .logo{
   position: absolute;
   bottom: 8px;
   right: 10px;
-  font-size: 0.4em;
+  font-size: 0.6em;
   color: $PivotalTeal;
   font: $PivotalFont;
+  z-index: 1000;
 }
 
 .reveal p {
@@ -72,4 +74,37 @@ $heading4Size: 1.0em;
   background: none;
   border:none;
   box-shadow:none;
+}
+
+.reveal h1 {
+  text-transform: uppercase;
+}
+
+.reveal h2 {
+  text-align: left;
+}
+
+.reveal h2:last-of-type {
+  text-align: left;
+  border-bottom: 1px solid $PivotalCoolGray;
+}
+
+.reveal p {
+  text-align: left;
+  font-size: 0.9em;
+}
+
+.reveal ul, ol {
+  font-size: 0.8em;
+  text-align: left;
+  padding-left: 4px;
+  display: block;
+}
+
+.reveal section .title-slide {
+  opacity: 0.5;
+}
+
+.reveal section img.title-image {
+  background:rgba(0,0,0,0.1);
 }
