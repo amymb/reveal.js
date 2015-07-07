@@ -43,11 +43,6 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
-				<section data-background="resources/images/pivotal-labs.jpg">
-					<img src="resources/images/Pivotal_Teal.png" class="title-image"/>
-				</section>
-
 			</div>
 
 			<div class="copyright">
@@ -90,6 +85,13 @@
 				});
 			}
 
+			function getLastSlide() {
+				$imgEl = $("<img src='resources/images/Pivotal_White.png'/>");
+				$sectionEl = $("<section data-background='#0A0203' data-transition='zoom'></section>");
+				$sectionEl.append($imgEl);
+				return $sectionEl;
+			}
+
 			var fetcher = new PresentationFetcher();
 			$.when(fetcher.fetch("slides/presentation.json"))
 				.done(function(presentation) {
@@ -106,6 +108,7 @@
 							$slidesDiv.append($vertSectionEl);
 						}
 					});
+					$slidesDiv.append(getLastSlide());
 					initializeReveal();
 				})
 				.fail(function() {
