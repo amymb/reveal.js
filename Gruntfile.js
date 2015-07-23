@@ -2,6 +2,8 @@
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
+  var slidesDir = grunt.option('slidesDir');
+  var formattedSlidesDir = slidesDir + '/**'
 
 	// Project configuration
 	grunt.initConfig({
@@ -130,8 +132,22 @@ module.exports = function(grunt) {
 			html: {
 				files: [ 'index.html']
 			}
-		}
+		},
+		copy: {
+		  main: {
+		    files: [
 
+		      // copy reveal.js
+		      {expand: true, src: ['**'], dest: 'target/'},
+					// copy slides
+					{expand: true, flatten: true, src: [formattedSlidesDir], dest: 'target/slides'},
+		    ],
+		  },
+		},
+		clean: {
+		   build: ["target"],
+			 afterbuild: ["target/slides/slides"]
+		}
 	});
 
 	// Dependencies
@@ -144,6 +160,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
 	grunt.loadNpmTasks( 'grunt-zip' );
+  grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
@@ -168,5 +186,23 @@ module.exports = function(grunt) {
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+	grunt.registerTask( 'build', 'Assembles reveal.js with markdown slides', function() {
+	  grunt.log.writeln('slidesDir: ' + slidesDir);
+
+		if(grunt.file.exists(slidesDir)){
+		  grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
+			grunt.log.writeln('Cleaning build directory: target')
+			//delete target dir
+	  	grunt.task.run('clean:build');
+      //merge directories
+   		grunt.task.run('copy');
+			//delete strange copy artifact
+			grunt.task.run('clean:afterbuild');
+		}
+		else{
+			grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3)
+		}
+	});
 
 };
