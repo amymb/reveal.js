@@ -1,10 +1,12 @@
+/*jslint node: true */
+"use strict";
 /* global module:false */
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
   var slidesDir = grunt.option('slidesDir');
-  var formattedSlidesDir = slidesDir + '/**'
-
+  var formattedSlidesDir = slidesDir + '/**';
+  var path = require('path');
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -187,21 +189,39 @@ module.exports = function(grunt) {
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
+	grunt.registerTask('start-copy-log', function() {
+	  grunt.log.writeln('Assembling files in build directory: '  + path.resolve() + '/target');
+	});
+
+	grunt.registerTask('complete', function() {
+	  grunt.log.writeln('Assembled files in build directory: ' + path.resolve() + '/target');
+	});
+
 	grunt.registerTask( 'build', 'Assembles reveal.js with markdown slides', function() {
 	  grunt.log.writeln('slidesDir: ' + slidesDir);
 
-		if(grunt.file.exists(slidesDir)){
-		  grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
-			grunt.log.writeln('Cleaning build directory: target')
-			//delete target dir
-	  	grunt.task.run('clean:build');
-      //merge directories
-   		grunt.task.run('copy');
-			//delete strange copy artifact
-			grunt.task.run('clean:afterbuild');
+		//error handling based on usage
+    if((slidesDir) && (slidesDir!==true)){
+			if(grunt.file.exists(slidesDir)){
+			  grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
+				grunt.log.writeln('Cleaning build directory:' + path.resolve() + '/target');
+				//delete target dir
+		  	grunt.task.run('clean:build');
+        grunt.task.run('start-copy-log');
+	      //merge directories
+	   		grunt.task.run('copy');
+				//delete strange copy artifact
+				grunt.task.run('clean:afterbuild');
+				grunt.task.run('complete');
+			}
+			else{
+				grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3);
+			}
 		}
-		else{
-			grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3)
+		else {
+			grunt.log.errorlns('Missing parameter: --slidesDir');
+			grunt.log.errorlns('Usage: grunt build --slidesDir=<PATH>/slides');
+
 		}
 	});
 
