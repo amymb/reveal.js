@@ -111,10 +111,20 @@ module.exports = function(grunt) {
 				'js/**',
 				'lib/**',
 				'images/**',
-				'plugin/**'
+				'lib/**'
 			]
 		},
-
+		compress : {
+		    main : {
+		        options : {
+		            archive : "target/presentation.zip"
+		        },
+		        files : [
+		            { expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**'], dest: '/' },
+							{ expand: true, flatten: true, src : [formattedSlidesDir], dest: '/slides' }
+		        ]
+		    }
+		},
 		watch: {
 			options: {
 				livereload: true
@@ -135,20 +145,8 @@ module.exports = function(grunt) {
 				files: [ 'index.html']
 			}
 		},
-		copy: {
-		  main: {
-		    files: [
-
-		      // copy reveal.js
-		      {expand: true, src: ['**'], dest: 'target/'},
-					// copy slides
-					{expand: true, flatten: true, src: [formattedSlidesDir], dest: 'target/slides'},
-		    ],
-		  },
-		},
 		clean: {
-		   build: ["target"],
-			 afterbuild: ["target/slides/slides"]
+		   build: ["target"]
 		}
 	});
 
@@ -164,6 +162,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-zip' );
   grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
@@ -189,13 +188,7 @@ module.exports = function(grunt) {
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
-	grunt.registerTask('start-copy-log', function() {
-	  grunt.log.writeln('Assembling files in build directory: '  + path.resolve() + '/target');
-	});
 
-	grunt.registerTask('complete', function() {
-	  grunt.log.writeln('Assembled files in build directory: ' + path.resolve() + '/target');
-	});
 
 	grunt.registerTask( 'build', 'Assembles reveal.js with markdown slides', function() {
 	  grunt.log.writeln('slidesDir: ' + slidesDir);
@@ -207,12 +200,8 @@ module.exports = function(grunt) {
 				grunt.log.writeln('Cleaning build directory:' + path.resolve() + '/target');
 				//delete target dir
 		  	grunt.task.run('clean:build');
-        grunt.task.run('start-copy-log');
-	      //merge directories
-	   		grunt.task.run('copy');
-				//delete strange copy artifact
-				grunt.task.run('clean:afterbuild');
-				grunt.task.run('complete');
+	      //create zip
+	   		grunt.task.run('compress');
 			}
 			else{
 				grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3);
