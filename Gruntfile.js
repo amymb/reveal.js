@@ -104,16 +104,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		zip: {
-			'reveal-js-presentation.zip': [
-				'index.html',
-				'css/**',
-				'js/**',
-				'lib/**',
-				'images/**',
-				'lib/**'
-			]
-		},
 		compress : {
 		    main : {
 		        options : {
@@ -159,7 +149,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
-	grunt.loadNpmTasks( 'grunt-zip' );
 	grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
 
@@ -178,9 +167,6 @@ module.exports = function(grunt) {
 	// All CSS
 	grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
 
-	// Package presentation to archive
-	grunt.registerTask( 'package', [ 'default', 'zip' ] );
-
 	// Serve presentation locally
 	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
 
@@ -188,15 +174,14 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
 
-
-	grunt.registerTask( 'build', 'Assembles reveal.js with markdown slides', function() {
+	grunt.registerTask( 'package', 'Assembles reveal.js with markdown slides into a zip file', function() {
 	  grunt.log.writeln('slidesDir: ' + slidesDir);
 
 		//error handling based on usage
     if((slidesDir) && (slidesDir!==true)){
 			if(grunt.file.exists(slidesDir)){
 			  grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
-				grunt.log.writeln('Cleaning build directory:' + path.resolve() + '/target');
+				grunt.task.run('default');
 				//delete target dir
 		  	grunt.task.run('clean:build');
 	      //create zip
@@ -208,7 +193,7 @@ module.exports = function(grunt) {
 		}
 		else {
 			grunt.log.errorlns('Missing parameter: --slidesDir');
-			grunt.log.errorlns('Usage: grunt build --slidesDir=<PATH>/slides');
+			grunt.log.errorlns('Usage: grunt package --slidesDir=<PATH>/slides');
 
 		}
 	});
