@@ -105,15 +105,15 @@ module.exports = function(grunt) {
 		},
 
 		compress : {
-		    main : {
-		        options : {
-		            archive : "target/presentation.zip"
-		        },
-		        files : [
-		            { expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**'], dest: '/' },
-							{ expand: true, flatten: true, src : [formattedSlidesDir], dest: '/slides' }
-		        ]
-		    }
+				main : {
+						options : {
+							archive : "target/presentation.zip"
+						},
+						files : [
+							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**'], dest: '/' },
+							{ expand: true, cwd: slidesDir, src : ['**'], dest: '/slides' }
+						]
+				}
 		},
 		watch: {
 			options: {
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
 			}
 		},
 		clean: {
-		   build: ["target"]
+			build: ["target"]
 		}
 	});
 
@@ -175,17 +175,17 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask( 'package', 'Assembles reveal.js with markdown slides into a zip file', function() {
-	  grunt.log.writeln('slidesDir: ' + slidesDir);
+  grunt.log.writeln('slidesDir: ' + slidesDir);
 
 		//error handling based on usage
     if((slidesDir) && (slidesDir!==true)){
 			if(grunt.file.exists(slidesDir)){
-			  grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
+				grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
 				grunt.task.run('default');
 				//delete target dir
-		  	grunt.task.run('clean:build');
-	      //create zip
-	   		grunt.task.run('compress');
+				grunt.task.run('clean:build');
+				//create zip
+				grunt.task.run('compress');
 			}
 			else{
 				grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3);
@@ -194,7 +194,6 @@ module.exports = function(grunt) {
 		else {
 			grunt.log.errorlns('Missing parameter: --slidesDir');
 			grunt.log.errorlns('Usage: grunt package --slidesDir=<PATH>/slides');
-
 		}
 	});
 
