@@ -4,8 +4,7 @@
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
-  var slidesDir = grunt.option('slidesDir');
-  var formattedSlidesDir = slidesDir + '/**';
+  var slidesDir = 'slides';
   var path = require('path');
 	// Project configuration
 	grunt.initConfig({
@@ -110,8 +109,7 @@ module.exports = function(grunt) {
 							archive : "target/presentation.zip"
 						},
 						files : [
-							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**'], dest: '/' },
-							{ expand: true, cwd: slidesDir, src : ['**'], dest: '/slides' }
+							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**','slides/**'] },
 						]
 				}
 		},
@@ -136,7 +134,7 @@ module.exports = function(grunt) {
 			}
 		},
 		clean: {
-			build: ["target"]
+			package: ["target"]
 		}
 	});
 
@@ -173,28 +171,19 @@ module.exports = function(grunt) {
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
 
-
-	grunt.registerTask( 'package', 'Assembles reveal.js with markdown slides into a zip file', function() {
-  grunt.log.writeln('slidesDir: ' + slidesDir);
-
-		//error handling based on usage
-    if((slidesDir) && (slidesDir!==true)){
+	/*Assembles presentation into a zip file.  Requires a slides sub directory.
+	For local dev this can be done with a sym link */
+	grunt.registerTask( 'package', 'Assembles presentation into a zip file', function() {
 			if(grunt.file.exists(slidesDir)){
-				grunt.log.writeln('Formatted slidesDir: ' + formattedSlidesDir);
 				grunt.task.run('default');
 				//delete target dir
-				grunt.task.run('clean:build');
+				grunt.task.run('clean:package');
 				//create zip
 				grunt.task.run('compress');
 			}
-			else{
-				grunt.fail.fatal('Directory does not exist: ' + slidesDir, 3);
+			else {
+				grunt.fail.fatal('Directory does not exist: ' + path.resolve() + '/' + slidesDir, 3);
 			}
-		}
-		else {
-			grunt.log.errorlns('Missing parameter: --slidesDir');
-			grunt.log.errorlns('Usage: grunt package --slidesDir=<PATH>/slides');
-		}
 	});
 
 };
