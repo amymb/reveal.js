@@ -4,7 +4,7 @@
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
-  var slidesDir = 'slides';
+  var SLIDES_DIR = 'slides';
   var path = require('path');
 	// Project configuration
 	grunt.initConfig({
@@ -109,7 +109,7 @@ module.exports = function(grunt) {
 							archive : "target/presentation.zip"
 						},
 						files : [
-							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**','slides/**'] },
+							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**', SLIDES_DIR + '/**'] },
 						]
 				}
 		},
@@ -174,7 +174,7 @@ module.exports = function(grunt) {
 	/*Assembles presentation into a zip file.  Requires a slides sub directory.
 	For local dev this can be done with a sym link */
 	grunt.registerTask( 'package', 'Assembles presentation into a zip file', function() {
-			if(grunt.file.exists(slidesDir)){
+			if(grunt.file.exists(SLIDES_DIR)){
 				grunt.task.run('default');
 				//delete target dir
 				grunt.task.run('clean:package');
@@ -182,7 +182,7 @@ module.exports = function(grunt) {
 				grunt.task.run('compress');
 			}
 			else {
-				grunt.fail.fatal('Directory does not exist: ' + path.resolve() + '/' + slidesDir, 3);
+				grunt.fail.fatal('Directory does not exist: ' + path.resolve() + '/' + SLIDES_DIR, 3);
 			}
 	});
 
