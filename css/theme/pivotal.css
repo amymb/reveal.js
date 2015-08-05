@@ -36,10 +36,10 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 3em; }
+  font-size: 2.8em; }
 
 .reveal h2 {
-  font-size: 2.8em; }
+  font-size: 2.5em; }
 
 .reveal h3 {
   font-size: 1.8em; }
@@ -317,7 +317,7 @@ body {
   font-size: 3em;
   vertical-align: middle; }
 
-.reveal section.toc > ul {
+.reveal section.toc > ul, .reveal section.toc > ol {
   font-size: 1.5em !important;
   float: right;
   width: 40%;

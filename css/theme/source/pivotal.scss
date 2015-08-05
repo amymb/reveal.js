@@ -34,8 +34,8 @@ $linkColor: $PivotalLinkBlue;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
-$heading1Size: 3em;
-$heading2Size: 2.8em;
+$heading1Size: 2.8em;
+$heading2Size: 2.5em;
 $heading3Size: 1.8em;
 $heading4Size: 1.3em;
 
@@ -115,7 +115,7 @@ $heading4Size: 1.3em;
   vertical-align: middle;
 }
 
-.reveal section.toc > ul {
+.reveal section.toc > ul, .reveal section.toc > ol {
   font-size: 1.5em !important;
   float: right;
   width: 40%;
