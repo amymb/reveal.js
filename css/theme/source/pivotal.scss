@@ -2,7 +2,6 @@
 @import "../template/mixins";
 @import "../template/settings";
 // ---------------------------------------------
-
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
 // ---------------------------------------------
 
@@ -25,7 +24,7 @@ $mainColor: $PivotalDarkGray;
 $headingColor: $PivotalCoolGray;
 
 $mainFontSize: 24px;
-$mainFont: Helvetica, sans-serif;
+$mainFont: $PivotalFont, Helvetica, sans-serif;
 $headingFont: $PivotalFont, Helvetica, sans-serif;
 //$headingTextShadow: none;
 $headingLetterSpacing: normal;
@@ -35,14 +34,16 @@ $linkColor: $PivotalLinkBlue;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
 
-$heading1Size: 2.5em;
-$heading2Size: 1.8em;
-$heading3Size: 1.3em;
-$heading4Size: 1.0em;
+$heading1Size: 3em;
+$heading2Size: 2.8em;
+$heading3Size: 1.8em;
+$heading4Size: 1.3em;
+
 
 // Theme template ------------------------------
 @import "../template/theme";
 // ---------------------------------------------
+
 
 .reveal .copyright{
   position: absolute;
@@ -66,7 +67,7 @@ $heading4Size: 1.0em;
 .reveal p {
   margin: 20px 0;
   line-height: 1;
-//  text-align: left;
+  text-align: left;
 }
 
 .reveal section img {
@@ -89,14 +90,43 @@ $heading4Size: 1.0em;
   border-bottom: 1px solid $PivotalCoolGray;
 }
 
-.reveal p {
-  text-align: left;
-  font-size: 0.9em;
-}
-
 .reveal ul, ol {
-  font-size: 0.8em;
+  font-size: 1.0em;
   text-align: left;
   padding-left: 4px;
   display: block;
+}
+
+// section table of contents
+.reveal section.toc > h3 {
+  float: left;
+  width: 40%;
+  text-align: left;
+  vertical-align: top;
+}
+
+.reveal section.toc > p {
+  float: left;
+  width: 40%;
+  text-align: center;
+  line-height: 1;
+  margin: 10px;
+  font-size: 3em;
+  vertical-align: middle;
+}
+
+.reveal section.toc > ul {
+  font-size: 1.5em !important;
+  float: right;
+  width: 40%;
+  border-left: 1px solid !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  padding-left: 80px !important;
+  margin-left: 20px !important;
+  color: $PivotalCoolGray;
+}
+
+.reveal .current-item {
+  color: $PivotalCalloutOrange;
 }

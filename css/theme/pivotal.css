@@ -7,7 +7,7 @@ body {
   background-color: #FFFFFF; }
 
 .reveal {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-size: 24px;
   font-weight: normal;
   color: #243640; }
@@ -36,16 +36,16 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.5em; }
+  font-size: 3em; }
 
 .reveal h2 {
-  font-size: 1.8em; }
+  font-size: 2.8em; }
 
 .reveal h3 {
-  font-size: 1.3em; }
+  font-size: 1.8em; }
 
 .reveal h4 {
-  font-size: 1em; }
+  font-size: 1.3em; }
 
 .reveal h1 {
   text-shadow: none; }
@@ -277,7 +277,8 @@ body {
 
 .reveal p {
   margin: 20px 0;
-  line-height: 1; }
+  line-height: 1;
+  text-align: left; }
 
 .reveal section img {
   margin: 15px 0px;
@@ -295,12 +296,37 @@ body {
   text-align: left;
   border-bottom: 1px solid #75787B; }
 
-.reveal p {
-  text-align: left;
-  font-size: 0.9em; }
-
 .reveal ul, ol {
-  font-size: 0.8em;
+  font-size: 1em;
   text-align: left;
   padding-left: 4px;
   display: block; }
+
+.reveal section.toc > h3 {
+  float: left;
+  width: 40%;
+  text-align: left;
+  vertical-align: top; }
+
+.reveal section.toc > p {
+  float: left;
+  width: 40%;
+  text-align: center;
+  line-height: 1;
+  margin: 10px;
+  font-size: 3em;
+  vertical-align: middle; }
+
+.reveal section.toc > ul {
+  font-size: 1.5em !important;
+  float: right;
+  width: 40%;
+  border-left: 1px solid !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  padding-left: 80px !important;
+  margin-left: 20px !important;
+  color: #75787B; }
+
+.reveal .current-item {
+  color: #F06523; }
