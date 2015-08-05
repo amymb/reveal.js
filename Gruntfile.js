@@ -1,8 +1,11 @@
+/*jslint node: true */
+"use strict";
 /* global module:false */
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
-
+  var SLIDES_DIR = 'slides';
+  var path = require('path');
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -100,17 +103,16 @@ module.exports = function(grunt) {
 			}
 		},
 
-		zip: {
-			'reveal-js-presentation.zip': [
-				'index.html',
-				'css/**',
-				'js/**',
-				'lib/**',
-				'images/**',
-				'plugin/**'
-			]
+		compress : {
+				main : {
+						options : {
+							archive : "target/presentation.zip"
+						},
+						files : [
+							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**', SLIDES_DIR + '/**'] },
+						]
+				}
 		},
-
 		watch: {
 			options: {
 				livereload: true
@@ -130,8 +132,10 @@ module.exports = function(grunt) {
 			html: {
 				files: [ 'index.html']
 			}
+		},
+		clean: {
+			package: ["target"]
 		}
-
 	});
 
 	// Dependencies
@@ -143,7 +147,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
-	grunt.loadNpmTasks( 'grunt-zip' );
+	grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
@@ -160,13 +165,25 @@ module.exports = function(grunt) {
 	// All CSS
 	grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
 
-	// Package presentation to archive
-	grunt.registerTask( 'package', [ 'default', 'zip' ] );
-
 	// Serve presentation locally
 	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+	/*Assembles presentation into a zip file.  Requires a slides sub directory.
+	For local dev this can be done with a sym link */
+	grunt.registerTask( 'package', 'Assembles presentation into a zip file', function() {
+			if(grunt.file.exists(SLIDES_DIR)){
+				grunt.task.run('default');
+				//delete target dir
+				grunt.task.run('clean:package');
+				//create zip
+				grunt.task.run('compress');
+			}
+			else {
+				grunt.fail.fatal('Directory does not exist: ' + path.resolve() + '/' + SLIDES_DIR, 3);
+			}
+	});
 
 };
