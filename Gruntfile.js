@@ -109,7 +109,7 @@ module.exports = function(grunt) {
 							archive : "target/presentation.zip"
 						},
 						files : [
-							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'resources/**', 'plugin/**', SLIDES_DIR + '/**'] },
+							{ expand: true, src : ['index.html', 'css/**', 'js/**', 'lib/**', 'images/**', 'resources/**', 'plugin/**', SLIDES_DIR + '/**'] },
 						]
 				}
 		},
