@@ -332,24 +332,24 @@ body {
 .reveal .current-item {
   color: #F06523; }
 
-section img.example1of3 {
+section.textleft-imageright img {
+  float: right;
+  margin: 0;
+  margin-left: 5%; }
+
+section.three-horizontal-images img:nth-child(1) {
   max-width: 20%;
   float: left;
   margin-left: 15%;
   margin-right: 5%; }
 
-section img.example2of3 {
+section.three-horizontal-images img:nth-child(2) {
   max-width: 20%;
   margin-left: auto;
   margin-right: auto; }
 
-section img.example3of3 {
+section.three-horizontal-images img:nth-child(3) {
   max-width: 20%;
   float: right;
   margin-right: 15%;
-  margin-left: 5%; }
-
-section.textleft-imageright img {
-  float: right;
-  margin: 0;
   margin-left: 5%; }
