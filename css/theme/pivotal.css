@@ -315,7 +315,8 @@ body {
   line-height: 1;
   margin: 10px;
   font-size: 3em;
-  vertical-align: middle; }
+  vertical-align: middle;
+  color: #75787B; }
 
 .reveal section.toc > ul, .reveal section.toc > ol {
   font-size: 1.5em !important;
