@@ -151,3 +151,9 @@ section img.example3of3 {
   margin-right: 15%;
   margin-left: 5%;
 }
+
+section.textleft-imageright img {
+  float:right;
+  margin: 0;
+  margin-left: 5%;
+}
