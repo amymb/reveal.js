@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -7,7 +8,7 @@ body {
   background-color: #FFFFFF; }
 
 .reveal {
-  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
   font-size: 24px;
   font-weight: normal;
   color: #243640; }
@@ -27,11 +28,11 @@ body {
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   margin: 0 0 20px 0;
   color: #75787B;
-  font-family: 'Source Sans Pro', Helvetica, sans-serif;
-  font-weight: 600;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 100;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: lowercase;
+  text-transform: none;
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -264,7 +265,8 @@ body {
   left: 8px;
   font-size: 0.4em;
   color: #75787B;
-  z-index: 1000; }
+  z-index: 1000;
+  font-family: 'Source Sans Pro', 'serif'; }
 
 .reveal .logo {
   position: absolute;
@@ -272,7 +274,7 @@ body {
   right: 10px;
   font-size: 0.6em;
   color: #01786E;
-  font: 'Source Sans Pro';
+  font: 'Source Sans Pro', 'serif';
   z-index: 1000; }
 
 .reveal p {
@@ -285,9 +287,6 @@ body {
   background: none;
   border: none;
   box-shadow: none; }
-
-.reveal h1 {
-  text-transform: uppercase; }
 
 .reveal h2 {
   text-align: left; }
@@ -302,13 +301,19 @@ body {
   padding-left: 4px;
   display: block; }
 
-.reveal section.toc > h3 {
+section.title-slide > h1 {
+  font-family: 'Roboto', serif;
+  font-size: 48px;
+  color: white;
+  font-weight: 100; }
+
+section.toc > h3 {
   float: left;
   width: 40%;
   text-align: left;
   vertical-align: top; }
 
-.reveal section.toc > p {
+section.toc > p {
   float: left;
   width: 40%;
   text-align: center;
@@ -318,7 +323,7 @@ body {
   vertical-align: middle;
   color: #75787B; }
 
-.reveal section.toc > ul, .reveal section.toc > ol {
+section.toc > ul, .reveal section.toc > ol {
   font-size: 1.5em !important;
   float: right;
   width: 40%;
@@ -329,7 +334,7 @@ body {
   margin-left: 20px !important;
   color: #75787B; }
 
-.reveal .current-item {
+.current-item {
   color: #F06523; }
 
 section.textleft-imageright img {
@@ -357,3 +362,32 @@ section.three-horizontal-images img:nth-child(3) {
   float: right;
   margin-right: 15%;
   margin-left: 5%; }
+
+section.image-quote > p {
+  float: left;
+  width: 45%;
+  font-size: 3em;
+  color: #75787B;
+  margin-right: 20px !important;
+  border-right: 1px solid !important; }
+
+section.image-quote > p > img {
+  max-height: 60% !important;
+  vertical-align: middle !important; }
+
+section.image-quote > h3 {
+  float: right;
+  width: 50%;
+  text-align: left;
+  font-size: 1.2em !important;
+  color: white;
+  letter-spacing: 2px;
+  margin-top: 15%;
+  vertical-align: top !important; }
+
+section.image-quote > h4 {
+  float: right;
+  width: 50%;
+  text-align: left;
+  font-size: 0.8em !important;
+  vertical-align: top !important; }

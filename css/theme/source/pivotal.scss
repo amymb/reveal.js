@@ -3,6 +3,7 @@
 @import "../template/settings";
 // ---------------------------------------------
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
 // ---------------------------------------------
 
 // Override theme settings ---------------------
@@ -18,18 +19,18 @@ $PivotalBackgroundLightGray: #F1F1F1;
 $PivotalBackgroundWhite: #FFFFFF;
 $PivotalBackgroundBlack: #0A0203;
 $backgroundColor: $PivotalBackgroundWhite;
-$PivotalFont: 'Source Sans Pro';
+$PivotalFont: 'Source Sans Pro', 'serif';
 
 $mainColor: $PivotalDarkGray;
 $headingColor: $PivotalCoolGray;
 
 $mainFontSize: 24px;
-$mainFont: $PivotalFont, Helvetica, sans-serif;
-$headingFont: $PivotalFont, Helvetica, sans-serif;
+$mainFont: 'Roboto', Helvetica, sans-serif;
+$headingFont: 'Roboto', Helvetica, sans-serif;
 //$headingTextShadow: none;
 $headingLetterSpacing: normal;
-$headingTextTransform: lowercase;
-$headingFontWeight: 600;
+$headingTextTransform: none;
+$headingFontWeight: 100;
 $linkColor: $PivotalLinkBlue;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
@@ -52,6 +53,7 @@ $heading4Size: 1.3em;
   font-size: 0.4em;
   color: $PivotalCoolGray;
   z-index: 1000;
+  font-family: $PivotalFont;
 }
 
 .reveal .logo{
@@ -77,10 +79,6 @@ $heading4Size: 1.3em;
   box-shadow:none;
 }
 
-.reveal h1 {
-  text-transform: uppercase;
-}
-
 .reveal h2 {
   text-align: left;
 }
@@ -97,15 +95,24 @@ $heading4Size: 1.3em;
   display: block;
 }
 
+// title slide
+
+section.title-slide > h1 {
+  font-family: 'Roboto', serif;
+  font-size: 48px;
+  color: white;
+  font-weight: 100;
+}
+
 // section table of contents
-.reveal section.toc > h3 {
+section.toc > h3 {
   float: left;
   width: 40%;
   text-align: left;
   vertical-align: top;
 }
 
-.reveal section.toc > p {
+section.toc > p {
   float: left;
   width: 40%;
   text-align: center;
@@ -116,7 +123,7 @@ $heading4Size: 1.3em;
   color: $headingColor;
 }
 
-.reveal section.toc > ul, .reveal section.toc > ol {
+section.toc > ul, .reveal section.toc > ol {
   font-size: 1.5em !important;
   float: right;
   width: 40%;
@@ -128,10 +135,9 @@ $heading4Size: 1.3em;
   color: $PivotalCoolGray;
 }
 
-.reveal .current-item {
+.current-item {
   color: $PivotalCalloutOrange;
 }
-
 
 
 section.textleft-imageright img {
@@ -159,7 +165,41 @@ section.three-horizontal-images img:nth-child(2){
 
 section.three-horizontal-images img:nth-child(3){
   max-width:20%;
-  float:right;
+  float: right;
   margin-right: 15%;
   margin-left: 5%;
+}
+
+// image-quote
+section.image-quote > p {
+  float: left;
+  width: 45%;
+  font-size: 3em;
+  color: $headingColor;
+  margin-right: 20px !important;
+  border-right: 1px solid !important;
+}
+
+section.image-quote > p > img {
+  max-height: 60% !important;
+  vertical-align: middle !important;
+}
+
+section.image-quote > h3 {
+  float: right;
+  width: 50%;
+  text-align: left;
+  font-size: 1.2em !important;
+  color: white;
+  letter-spacing: 2px;
+  margin-top: 15%;
+  vertical-align: top !important;
+}
+
+section.image-quote > h4 {
+  float: right;
+  width: 50%;
+  text-align: left;
+  font-size: 0.8em !important;
+  vertical-align: top !important;
 }
