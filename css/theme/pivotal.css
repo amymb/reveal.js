@@ -335,8 +335,12 @@ body {
 section.textleft-imageright img {
   float: right;
   margin: 0;
-  margin-left: 5%; }
+  margin-left: 5%;
+  width: 50%; }
 
+/**
+three-horizontal-images
+**/
 section.three-horizontal-images img:nth-child(1) {
   max-width: 20%;
   float: left;
