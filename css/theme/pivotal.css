@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
-@import url(http://fonts.googleapis.com/css?family=Roboto:100);
+@import url("../../lib/font/Roboto/Roboto.css");
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -301,11 +301,17 @@ body {
   padding-left: 4px;
   display: block; }
 
-section.title-slide > h1 {
-  font-family: 'Roboto', serif;
-  font-size: 48px;
-  color: white;
-  font-weight: 100; }
+html.title > body > div.reveal {
+  background-image: url('/images/bg-polygon-lines.png');
+  background-color: #243640;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+html.title > body > div.reveal > .copyright {
+  color: #F1F1F1; }
+
+html.title > body > div.reveal > div.slides > section.present > h1 {
+  color: white; }
 
 section.toc > h3 {
   float: left;
