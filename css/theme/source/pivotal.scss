@@ -112,6 +112,10 @@ html.title > body > div.reveal > div.slides > section.present > h1 {
   color: white;
 }
 
+html.title > body > div.reveal > div.slides > section.present > section.present > h1 {
+  color: white;
+}
+
 // section table of contents
 section.toc > h3 {
   float: left;

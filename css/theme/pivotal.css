@@ -313,6 +313,9 @@ html.title > body > div.reveal > .copyright {
 html.title > body > div.reveal > div.slides > section.present > h1 {
   color: white; }
 
+html.title > body > div.reveal > div.slides > section.present > section.present > h1 {
+  color: white; }
+
 section.toc > h3 {
   float: left;
   width: 40%;
