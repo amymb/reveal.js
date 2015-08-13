@@ -400,3 +400,14 @@ section.image-quote > h4 {
   text-align: left;
   font-size: 0.8em !important;
   vertical-align: top !important; }
+
+section.centered-quote > h3 {
+  text-align: center;
+  vertical-align: middle;
+  color: white; }
+
+section.centered-quote > h4 {
+  text-align: center;
+  vertical-align: middle;
+  color: #EBEBEB;
+  line-height: 1.6em; }
