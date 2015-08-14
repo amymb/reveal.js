@@ -352,6 +352,10 @@ section.textleft-imageright img {
   margin-left: 5%;
   width: 50%; }
 
+section.textleft-imageright ol {
+  display: list-item;
+}
+
 /**
 three-horizontal-images
 **/
